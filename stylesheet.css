@@ -1,0 +1,45 @@
+/** HTML **/
+html {
+	scroll-behavior: smooth;
+}
+
+/** HOME **/
+.bg-image {
+size: 50%;
+}
+/** HOME **/
+
+/** ABOUT **/
+.bg-about {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url(https://images.unsplash.com/photo-1544256718-3bcf237f3974?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2702&q=80);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	box-sizing: border-box;
+	height: auto;
+}
+
+.bg-card-about {
+	background-color: rgba(54, 54, 54, 0.7);
+	color: white;
+}
+/** ABOUT **/
+
+/** CONTACT **/
+.bg-contact {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url(https://images.unsplash.com/photo-1492551557933-34265f7af79e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	box-sizing: border-box;
+	height: auto;
+	position: relative;
+}
+
+.bg-card-contact {
+	background-color: rgba(54, 54, 54, 0.7);
+	color: white;
+}
+/** CONTACT **/
