@@ -1,37 +1,3 @@
-<!-- <?php
-
-$message_sent = false;
-if (isset($_POST['email']) && $_POST['email'] != '') {
-
-	if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-
-
-		//submit the form
-		$userName = $_POST['myName'];
-		$userEmail = $_POST['myEmail'];
-		$messageSubject = $_POST['subject'];
-		$message = $_POST['message'];
-
-		$to = "gtroyer@512global.com";
-		$body = "";
-
-		$body .= "From: " . $userName . "\r\n";
-		$body .= "Email: " . $userEmail . "\r\n";
-		$body .= "Message: " . $message . "\r\n";
-
-		mail($to, $messageSubject, $body);
-
-		$message_sent = true;
-	} else {
-		$invalid_class_name = "form-invalid";
-	}
-}
-
-
-
-?> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,23 +9,41 @@ if (isset($_POST['email']) && $_POST['email'] != '') {
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
 	<title>Contact</title>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script type="text/javascript">
+	import{ init } from 'emailjs-com';
+	init("user_FykTWLAhFbJxzrG37pQCq");
+
+        (function() {
+            // https://dashboard.emailjs.com/admin/integration
+            emailjs.init('user_FykTWLAhFbJxzrG37pQCq');
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // generate a five digit number for the contact_number variable
+                this.contact_number.value = Math.random() * 100000 | 0;
+                // these IDs from the previous steps
+                emailjs.sendForm('service_qzqbnkr', 'template_q4bnpcb', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
 </head>
 
 <body>
-	<!-- <?php
-	if ($message_sent) :
-	?>
-
-		<h3>Thanks, we'll be in touch!</h3>
-	<?php
-	else :
-	?> -->
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col">
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
 						<a class="navbar-brand" href="index.html">
-							<img src="LOGO.jpg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+							<img src="./public/LOGO.jpg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
 							Sovereignty Abound Community
 						</a>
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,10 +75,10 @@ if (isset($_POST['email']) && $_POST['email'] != '') {
 
 
 			<div class="col-sm-3">
-				<img style="height: 400px; width: 667px; float: left;" src="contactImage.jpg">
+				<img style="height: 400px; width: 667px; float: left;" src="./public/contactImage.jpg">
 			</div>
 			<div class="col-sm-9">
-				<img style="height: 500px; float: left;" src="contactImage2.jpg">
+				<img style="height: 500px; float: left;" src="./public/contactImage2.jpg">
 			</div>
 			<div class="container-fluid vh-100 " style="background-color: whitesmoke;">
 				<div class="row vh-100">
@@ -118,14 +102,16 @@ if (isset($_POST['email']) && $_POST['email'] != '') {
 										sovereigntyabound@gmail.com</a>
 
 								</p>
-								<!-- <form method="POST" action="contact.php" id="contact-form"></form>
-								<h2>Contact us</h2>
-								<p><label>First Name:</label> <input name="myName" type="text" /></p>
-								<p><label>Email Address:</label> <input style="cursor: pointer;" name="myEmail" type="text" /></p>
-								<p><label>Subject:</label> <input name="messageSubject" type="text" /></p>
-								<p><label>Message:</label> <textarea name="message"></textarea> </p>
-								<p><input type="submit" value="Send" /></p>
-								</form> -->
+								<form id="contact-form">
+									<input type="hidden" name="contact_number">
+									<label>Name</label>
+									<input type="text" name="user_name">
+									<label>Email</label>
+									<input type="email" name="user_email">
+									<label>Message</label>
+									<textarea name="message"></textarea>
+									<input type="submit" value="Send">
+								</form>
 								<br />
 
 							</div>
@@ -133,11 +119,6 @@ if (isset($_POST['email']) && $_POST['email'] != '') {
 					</div>
 				</div>
 			</div>
-		<!-- <?php
-	endif;
-		?> -->
-
-
 
 		<footer>
 			<div class="container-fluid">
