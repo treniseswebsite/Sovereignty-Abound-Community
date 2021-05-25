@@ -93,7 +93,7 @@ if ($_POST["message"]) {
 									sovereigntyabound@gmail.com</a>
 
 							</p>
-							<form method="post" action="subscriberform.php">
+							<form method="post" action="contact.php">
 
 
 								<textarea name="message"></textarea>
