@@ -1,20 +1,37 @@
 <?php
 
+$message_sent = false;
+if (isset($_POST['email']) && $_POST['email'] != '') {
 
-if ($_POST["message"]) {
-
-
-	mail(
-		"sovereigntyabound@gmail.com",
-		"You have a new volunteer for SAAAC!",
+	if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 
 
-		$_POST["insert your message here"] . "From: an@email.address"
-	);
+		//submit the form
+		$userName = $_POST['myName'];
+		$userEmail = $_POST['myEmail'];
+		$messageSubject = $_POST['subject'];
+		$message = $_POST['message'];
+
+		$to = "gtroyer@512global.com";
+		$body = "";
+
+		$body .= "From: " . $userName . "\r\n";
+		$body .= "Email: " . $userEmail . "\r\n";
+		$body .= "Message: " . $message . "\r\n";
+
+		mail($to, $messageSubject, $body);
+
+		$message_sent = true;
+	} else {
+		$invalid_class_name = "form-invalid";
+	}
 }
 
 
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,88 +46,96 @@ if ($_POST["message"]) {
 </head>
 
 <body>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<a class="navbar-brand" href="index.html">
-						<img src="LOGO.jpg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-						Sovereignty Abound Community
-					</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarNavDropdown">
-						<ul class="navbar-nav">
+	<?php
+	if ($message_sent) :
+	?>
 
-							<li class="nav-item">
-								<a class="nav-link" href="index.html">About<span class="sr-only">(current)</span></a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="engage.html">Give</a>
-							</li>
-							<li class="nav-item active">
-								<a class="nav-link" href="contact.html">Contact</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="food.html">Food Distribution</a>
-							</li>
+		<h3>Thanks, we'll be in touch!</h3>
+	<?php
+	else :
+	?>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col">
+					<nav class="navbar navbar-expand-lg navbar-light bg-light">
+						<a class="navbar-brand" href="index.html">
+							<img src="LOGO.jpg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+							Sovereignty Abound Community
+						</a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarNavDropdown">
+							<ul class="navbar-nav">
+
+								<li class="nav-item">
+									<a class="nav-link" href="index.html">About<span class="sr-only">(current)</span></a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="engage.html">Give</a>
+								</li>
+								<li class="nav-item active">
+									<a class="nav-link" href="contact.php">Contact</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="food.html">Food Distribution</a>
+								</li>
 
 
-						</ul>
-					</div>
-				</nav>
+							</ul>
+						</div>
+					</nav>
+				</div>
+
 			</div>
 
-		</div>
 
+			<div class="col-sm-3">
+				<img style="height: 400px; width: 667px; float: left;" src="contactImage.jpg">
+			</div>
+			<div class="col-sm-9">
+				<img style="height: 500px; float: left;" src="contactImage2.jpg">
+			</div>
+			<div class="container-fluid vh-100 " style="background-color: whitesmoke;">
+				<div class="row vh-100">
+					<div class="col d-flex align-items-center justify-content-center flex-column bg-contact">
+						<div class="card bg-card-contact">
+							<div class="card-body">
+								<h1 class="card-title d-flex justify-content-center">
+									CONTACT
+								</h1>
+								<p class="lead">
+									If you would like to get in touch, partner with us, or have any issues, please call our toll-free number at:
 
-		<div class="col-sm-3">
-			<img style="height: 400px; width: 667px; float: left;" src="contactImage.jpg">
-		</div>
-		<div class="col-sm-9">
-			<img style="height: 500px; float: left;" src="contactImage2.jpg">
-		</div>
-		<div class="container-fluid vh-100 " style="background-color: whitesmoke;">
-			<div class="row vh-100">
-				<div class="col d-flex align-items-center justify-content-center flex-column bg-contact">
-					<div class="card bg-card-contact">
-						<div class="card-body">
-							<h1 class="card-title d-flex justify-content-center">
-								CONTACT
-							</h1>
-							<p class="lead">
-								If you would like to get in touch, partner with us, or have any issues, please call our toll-free number at:
+									<br>
+									916-572-7541
+									<br>
 
-								<br>
-								916-572-7541
-								<br>
+								</p>
+								<p class="lead">
+									or send us an email at
+									<a href="mailto:sovereigntyabound@gmail.com" target="_blank" class="badge badge-info">
+										sovereigntyabound@gmail.com</a>
 
-							</p>
-							<p class="lead">
-								or send us an email at
-								<a href="mailto:sovereigntyabound@gmail.com" target="_blank" class="badge badge-info">
-									sovereigntyabound@gmail.com</a>
+								</p>
+								<form method="POST" action="contact.php" id="contact-form"></form>
+								<h2>Contact us</h2>
+								<p><label>First Name:</label> <input name="myName" type="text" /></p>
+								<p><label>Email Address:</label> <input class="<?= $invalid_class_name ?? "" ?>" style="cursor: pointer;" name="myEmail" type="text" /></p>
+								<p><label>Subject:</label> <input name="messageSubject" type="text" /></p>
+								<p><label>Message:</label> <textarea name="message"></textarea> </p>
+								<p><input type="submit" value="Send" /></p>
+								</form>
+								<br />
 
-							</p>
-							<form method="post" action="contact.php">
-
-
-								<textarea name="message"></textarea>
-
-
-								<input type="submit">
-
-
-							</form>
-							<br />
-
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-
+		<?php
+	endif;
+		?>
 
 
 
@@ -137,7 +162,7 @@ if ($_POST["message"]) {
 				</div>
 			</div>
 		</footer>
-	</div>
+		</div>
 </body>
 
 </html>
