@@ -6,7 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-   
+    <script type="text/javascript">
+
+      (function() {
+      emailjs.init("user_FykTWLAhFbJxzrG37pQCq");
+      })();
+    
+      </script>
     <title>Youth Entrepreneurship</title>
 </head>
 <body>
@@ -59,7 +65,18 @@
                         <p class="card-text" style="width: 40%; font-size: 20px;"> <strong>Our amazing team of regulars and part-time volunteers are committed to helping others. We take our convictions and lure them into action. Think you would be a good fit? Get in touch for more information!</strong>
 
                         </p>
-                        
+                        <form id="contact-form">
+                          <input type="hidden" name="contact_number">
+                          <label>Name</label>
+                          <input type="text" name="user_name">
+                          <label>Email</label>
+                          <input type="email" name="user_email">
+                        </br>
+                          <label>Tell us about yourself</label>
+                          <textarea rows="10" cols="80" name="message"></textarea>
+                        </br>
+                          <input type="submit" value="Send">
+                        </form>
                     </div>
                   </div>
             </div>
